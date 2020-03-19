@@ -1,0 +1,24 @@
+def sortedInsert(head, data):
+    node = head
+    if node is None:
+        node.data = data
+        node.next = None
+        node.prev = None
+        head = node
+
+    if data < node.data:
+        DoublyLinkedListNode.data = data
+        DoublyLinkedListNode.next = node
+        DoublyLinkedListNode.prev = None
+        head = DoublyLinkedListNode
+    else:
+        while node.next is not None:
+            if node.data <= data and node.next.data >= data:
+                break
+            node = node.next
+        
+        DoublyLinkedListNode.data = data
+        DoublyLinkedListNode.prev = node
+        DoublyLinkedListNode.next = node.next if node is not None else None
+        node.next = DoublyLinkedListNode
+    return head

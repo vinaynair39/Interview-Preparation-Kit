@@ -1,0 +1,16 @@
+def has_cycle(head):
+    
+    if head.next is None:
+        return 0
+    
+    first = head.next
+    second = head.next.next
+    
+    while first != second and first is not None and second is not None:
+        first = first.next
+        second = second.next.next
+        
+    if first is not None and second is not None:
+        return 1
+    else:
+        return 0

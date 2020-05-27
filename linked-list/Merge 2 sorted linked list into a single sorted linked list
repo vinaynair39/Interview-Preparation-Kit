@@ -1,0 +1,29 @@
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+def mergeLinkedLists(headOne, headTwo):
+    p1 = headOne
+	prev = None
+	p2 = headTwo
+	
+	while p1 is not None and p2 is not None:
+		if p2.value <= p1.value:
+			if prev is not None:
+				prev.next = p2
+			prev = p2
+			p2 = p2.next
+			prev.next = p1
+		else:
+			prev = p1
+			p1 = p1.next
+			
+	if p1 is None:
+		prev.next = p2
+		
+	return headOne if headOne.value < headTwo.value else headTwo
+		
+		
+		

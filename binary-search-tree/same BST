@@ -1,0 +1,33 @@
+def sameBsts(arrayOne, arrayTwo):
+	if len(arrayOne) != len(arrayTwo):
+		return False
+	if not any(arrayOne):
+		return True
+	if arrayOne[0] != arrayTwo[0]:
+		return False
+	
+	leftOne = getMinValue(arrayOne)
+	leftTwo = getMinValue(arrayTwo)
+	rightOne = getMaxValue(arrayOne)
+	rightTwo = getMaxValue(arrayTwo)
+	
+	return sameBsts(leftOne, leftTwo) and sameBsts(rightOne, rightTwo)
+	
+
+
+def getMinValue(array):
+	smaller = []
+	for i in range(1, len(array)):
+		if array[i] < array[0]:
+			smaller.append(array[i])
+			
+	return smaller
+
+def getMaxValue(array):
+	biggerOrEqual = []
+	for i in range(1, len(array)):
+		if array[i] >= array[0]:
+			biggerOrEqual.append(array[i])
+			
+	return biggerOrEqual
+			

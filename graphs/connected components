@@ -1,0 +1,35 @@
+from collections import defaultdict
+
+class Graph:
+  def __init__(self):
+    self.graph = defaultdict(list)
+    self.visited = defaultdict(lambda: False)
+    self.count = 0
+
+  def addEdge(self, u, v):
+    self.graph[u].append(v)
+    self.graph[v].append(u)
+
+  def findComponents(self, n):
+    for i in range(1, n+1):
+      if not self.visited[i]:
+        self.count += 1
+        self.dfs(i)
+    return self.count
+
+  def dfs(self, at):
+    if self.visited[at]:
+      return
+    self.visited[at] = True
+    children = self.graph[at]
+    for child in children:
+      self.dfs(child)
+    
+    
+n, e = map(int, input().split())
+g = Graph()
+for i in range(e):
+  u, v = map(int, input().split())
+  g.addEdge(u, v)
+
+print(g.findComponents(n))
